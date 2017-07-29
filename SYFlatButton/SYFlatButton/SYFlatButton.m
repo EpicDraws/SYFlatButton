@@ -208,7 +208,7 @@
 
 - (void)animateColorWithState:(NSCellStateValue)state {
     [self removeAllAnimations];
-    CGFloat duration = (state == NSOnState) ? self.onAnimateDuration : self.offAnimateDuration;
+    CGFloat duration = self.colorAnimateDuration;
     NSColor *borderColor = (state == NSOnState) ? self.borderHighlightColor : self.borderNormalColor;
     NSColor *backgroundColor = (state == NSOnState) ? self.backgroundHighlightColor : self.backgroundNormalColor;
     NSColor *titleColor = (state == NSOnState) ? self.titleHighlightColor : self.titleNormalColor;

@@ -16,6 +16,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable BOOL momentary;                     // Default:NO   - Restore button state when mouse up
 @property (nonatomic, assign) IBInspectable CGFloat onAnimateDuration;          // Default:0.0  - The animation duration from NSOffState to NSOnState
 @property (nonatomic, assign) IBInspectable CGFloat offAnimateDuration;         // Default:0.0  - The animation duration from NSOnState to NSOffState
+@property (nonatomic, assign) IBInspectable CGFloat colorAnimateDuration;       // Default:0.0  - The animation duration for color changes
 @property (nonatomic, assign) IBInspectable CGFloat cornerRadius;               // Default:0.0  - Button's border corner radius
 @property (nonatomic, assign) IBInspectable CGFloat borderWidth;                // Default:0.0  - Button's border width
 @property (nonatomic, assign) IBInspectable CGFloat spacing;                    // Default:0.0  - Button's spacint between image and title
