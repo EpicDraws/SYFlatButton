@@ -208,15 +208,23 @@
 
 - (void)animateColorWithState:(NSCellStateValue)state {
     [self removeAllAnimations];
-    CGFloat duration = self.colorAnimateDuration;
     NSColor *borderColor = (state == NSOnState) ? self.borderHighlightColor : self.borderNormalColor;
     NSColor *backgroundColor = (state == NSOnState) ? self.backgroundHighlightColor : self.backgroundNormalColor;
     NSColor *titleColor = (state == NSOnState) ? self.titleHighlightColor : self.titleNormalColor;
     NSColor *imageColor = (state == NSOnState) ? self.imageHighlightColor : self.imageNormalColor;
-    [self animateLayer:self.layer color:borderColor keyPath:@"borderColor" duration:duration];
-    [self animateLayer:self.layer color:backgroundColor keyPath:@"backgroundColor" duration:duration];
-    [self animateLayer:self.imageLayer color:imageColor keyPath:@"backgroundColor" duration:duration];
-    [self animateLayer:self.titleLayer color:titleColor keyPath:@"foregroundColor" duration:duration];
+    
+    CGFloat duration = self.colorAnimateDuration;
+    if(duration == 0) {
+        [self.layer setValue:(id)borderColor.CGColor forKey:@"borderColor"];
+        [self.layer setValue:(id)backgroundColor.CGColor forKey:@"backgroundColor"];
+        [self.imageLayer setValue:(id)imageColor.CGColor forKey:@"backgroundColor"];
+        [self.titleLayer setValue:(id)titleColor.CGColor forKey:@"foregroundColor"];
+    } else {
+        [self animateLayer:self.layer color:borderColor keyPath:@"borderColor" duration:duration];
+        [self animateLayer:self.layer color:backgroundColor keyPath:@"backgroundColor" duration:duration];
+        [self animateLayer:self.imageLayer color:imageColor keyPath:@"backgroundColor" duration:duration];
+        [self animateLayer:self.titleLayer color:titleColor keyPath:@"foregroundColor" duration:duration];
+    }
 }
 
 - (void)animateLayer:(CALayer *)layer color:(NSColor *)color keyPath:(NSString *)keyPath duration:(CGFloat)duration {
